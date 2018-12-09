@@ -3,39 +3,49 @@
 var letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 var winsTotal = 0
 var lossesTotal = 0
-var attempts = 10
+var attempts = 9
 var usedLetters = [];
-var userGuess = ""
+var computerGuess = [];
     // var userGuess = document.onkeyup = function guessWhat(event){
     //     event.key
 //computer guess method
-var computerGuess = letters[Math.floor(Math.random()* letters.length)];
-console.log(computerGuess)
+ function() {
+    var compGuessVar = letters[Math.floor(Math.random()* letters.length)];
+computerGuess.push(compGuessVar);
+console.log(computerGuess[0])
+}
 
+document.onkeyup = function(event) {
+    var userGuess = event.key;
+    usedLetters.push(userGuess);
+    
 
-// make an event listener for the user's guess
-// document.onkeyup = function user(event) {
-// var userGuess = event.key
-document.onkeyup = function guessWhat(event){
-    event.key;
-
- guessWhat(); { 
-if (userGuess === computerGuess) 
+if ((userGuess === computerGuess[0]) && (attempts > 0)) {
 winsTotal++;
-attempts = 10;
-usedLetters = 0;
-} if (userGuess != computerGuess) {
+attempts = 9;
+usedLetters.length = 0;
+computerGuess.length = 0;
+var compGuessVar = letters[Math.floor(Math.random()* letters.length)];
+computerGuess.push(compGuessVar);
+console.log(computerGuess[0])
+} else if ((userGuess !== computerGuess[0]) && (attempts > 0)) {
 attempts--;
-document.getElementById("guessthusfar").push(userGuess);
-} if (attempts = 0){
-    lossesTotal++;
 
-document.getElementById("wins").innerHTML = "Wins: " + winsTotal
-document.getElementbyId("losses").innerHTML = "Losses: " + lossesTotal
-document.getElementById("guessthusfar").innerHTML = "Your Guesses So Far: " + usedLetters
-userGuess.textContent = "Your Guesses: " + userGuess
+} else {
+    lossesTotal++;
+    attempts = 9
+    usedLetters.length = 0
+    var compGuessVar = letters[Math.floor(Math.random()* letters.length)];
+computerGuess.push(compGuessVar)
+    document.getElementById("losses").push(compGuessVar);
+    document.getElementById("wins").append(winsTotal);
+    document.getElementbyId("losses").append(lossesTotal);
+    document.getElementById("guessthusfar").append(usedLetters);
+    userGuess.textContent("Your Guesses: " + userGuess);
 }
 }
+
+
 
 // while (computerGuess.length = 0, function()) {
 //     letters[Math.floor(Math.random()* letters.length)];
